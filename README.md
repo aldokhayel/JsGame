@@ -25,6 +25,6 @@ cd JsGame
 
 
 ## Refrences
-⋅⋅* [Encapsulation](https://developer.mozilla.org/en-US/docs/Glossary/Encapsulation)
-⋅⋅* [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
-⋅⋅* [Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+* [Encapsulation](https://developer.mozilla.org/en-US/docs/Glossary/Encapsulation)
+* [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+* [Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
