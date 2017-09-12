@@ -1,7 +1,5 @@
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -21,16 +19,18 @@ Enemy.prototype.update = function(dt) {
         this.x = 0;
     };
 
-    enemyCollision(this);
-    displayScore();
+    this.enemyCollision();
+    player.displayScore();
 };
 
-var enemyCollision = function(Enemy){
-    if( player.y + 40 >= Enemy.y &&
-        player.y      <= Enemy.y + 60 &&
-        player.x + 65 >= Enemy.x &&
-        player.x      <= Enemy.x + 65)
-        playerReset(player);
+Enemy.prototype.enemyCollision = function(){
+    if( player.y + 40 >= this.y &&
+        player.y      <= this.y + 60 &&
+        player.x + 65 >= this.x &&
+        player.x      <= this.x + 65){
+        var called = true;
+        player.playerReset(called);
+    }
 }
 
 // Draw the enemy on the screen, required method for game
@@ -43,83 +43,87 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 
 
-var player = function(x, y, speed) {
+var Player = function(x, y, speed) {
     this.sprite = 'images/char-boy.png';
     this.x = x;
     this.y = y;
     this.speed = speed;
 };
 
-player.prototype.update = function() {
-    borderCollision(this);
+Player.prototype.update = function() {
+    this.borderCollision();
+
 };
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-player.prototype.render = function() {
+Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
 }
 
 
-player.prototype.handleInput = function(KeyPress) {
+Player.prototype.handleInput = function(KeyPress) {
     if(KeyPress == 'left')
-        player.x -= player.speed;
+        this.x -= this.speed;
 
     if(KeyPress == 'up')
-        player.y -= player.speed - 20;
+        this.y -= this.speed - 20;
 
     if(KeyPress == 'right')
-        player.x += player.speed;
+        this.x += this.speed;
 
     if(KeyPress == 'down')
-        player.y += player.speed - 20;
+        this.y += this.speed - 20;
 };
 
 // prevent to move outside of canvas borders
-var borderCollision = function(player) {
-    if(player.y > 380)
-        player.y = 380;
+Player.prototype.borderCollision = function() {
+    if(this.y > 380)
+        this.y = 380;
 
-    if(player.y < -20){
-        playerReset(player);
-        playerReset.called = false;
+    if(this.y < -20){
+        var called = false;
+        this.playerReset(called);
+        //this.playerReset.called = false;
     }
 
-    if(player.x > 400)
-        player.x = 400;
+    if(this.x > 400)
+        this.x = 400;
 
-    if(player.x < 0)
-        player.x = 0;
+    if(this.x < 0)
+        this.x = 0;
 }
 
 // start from begin
-var playerReset = function(player){
-    playerReset.called = true;
-    player.x = 200;
-    player.y = 380;
+Player.prototype.playerReset = function(called){
+    //called = true;
+    this.x = 200;
+    this.y = 380;
+
+    this.failCount(called);
 }
 
 // count sucessful pass
-var scoreCount = function() {
-    if(player.y + 50 <= 0)
+Player.prototype.scoreCount = function() {
+    if(this.y + 50 <= 0)
         score++;
 }
 
-var failCount = function() {
-    if(playerReset.called)
+Player.prototype.failCount = function(called) {
+    if(called)
         fail++;
 
-    playerReset.called = false;
+    this.playerReset.called = false;
 
 }
 
 // show result
-var displayScore = function() {
-    scoreCount();
-    failCount();
+Player.prototype.displayScore = function() {
+    this.scoreCount();
+    //this.failCount();
     var canvas = document.getElementsByTagName('canvas');
     scoreDiv.innerHTML = 'Score : ' + score + ' / Collision : ' + fail;
     var first = canvas[0];
@@ -131,7 +135,7 @@ var allEnemies = [];
 var score = 0;
 var fail = 0;
 var scoreDiv = document.createElement('div');
-var player = new player(200, 380, 100);
+var player = new Player(200, 380, 100);
 var enemy = new Enemy(0, Math.random() * 180 + 60, Math.random() * 300);
 allEnemies.push(enemy);
 

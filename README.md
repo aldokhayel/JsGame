@@ -1,6 +1,29 @@
-frontend-nanodegree-arcade-game
+#JsGame
+
 ===============================
+It's a **JavaScript game** that should player pass the road without collision with enemy. the game build on the functions **object-oriented**.
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+##Installation
+In order to play the game you need to download the repository and serve the index.html through a web server.
+```
+git clone https://github.com/aldokhayel/JsGame.git
+cd JsGame
+```
+##How to play
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+1. Use only arrow keys to move the player:
+⋅⋅*Right arrow key to move right
+⋅⋅*Left arrow key to move left
+⋅⋅*Up arrow key to move up
+⋅⋅*Down arrow key to move down
+2. Try to Pay attention to the running bugs and avoid clossing their path. If you do collide with a bug the player position will be reset and you will have an opportunity to try again.
+3. Game is won and is over when player reaches the topmost row - the water.
+4. Refresh the browser window to start a new game.
+
+##License
+There is no license
+
+##Refrences
+⋅⋅*[Encapsulation](https://developer.mozilla.org/en-US/docs/Glossary/Encapsulation)
+⋅⋅*[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+⋅⋅*[Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
